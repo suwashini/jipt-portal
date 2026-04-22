@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPlus+ | Measure. Improve. Succeed</title>
+    <style>
+        :root {
+            --jipt-blue: #1a4a8d;
+            --jipt-orange: #f37021;
+            --jipt-green: #4db748;
+            --white: #ffffff;
+        }
+
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: #f4f7f6; overflow-x: hidden; }
+
+        /* HEADER FIXED AT TOP */
+        .top-bar {
+            background: white;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            
+            /* These lines fix the header at the top */
+            position: sticky;
+            top: 0;
+            z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-center { text-align: center; flex-grow: 1; }
+        .main-title { color: var(--jipt-blue); font-weight: 800; font-size: 32px; margin: 0; }
+        .sub-brand { color: var(--jipt-orange); font-size: 18px; font-weight: 600; display: block; font-style: italic;}
+        
+        .logo-left img { height: 45px; width: auto; }
+        .logo-right img { height: 75px; width: auto; border-radius: 50%; }
+
+        /* Dynamic Hero Banner */
+        .hero-banner {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.8);
+            border-bottom: 5px solid var(--jipt-orange);
+            background-color: #222;
+        }
+
+        .hero-banner h1 { font-size: 55px; margin: 0; font-weight: 800; }
+
+        /* Content Area */
+        .section-label { max-width: 1300px; margin: 30px auto 10px; padding: 0 20px; color: var(--jipt-orange); font-size: 24px; font-weight: bold; }
+        
+        .portal-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px 20px 60px;
+            max-width: 1350px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            flex: 1;
+            min-width: 250px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .card-img { width: 100%; height: 130px; object-fit: contain; margin-bottom: 15px; }
+
+        h2 { color: var(--jipt-blue); font-size: 18px; margin: 10px 0; min-height: 40px; }
+        
+        .btn {
+            padding: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            display: block;
+        }
+
+        .btn-green { background: var(--jipt-green); }
+        .btn-orange { background: var(--jipt-orange); }
+        .btn-blue { background: var(--jipt-blue); }
+        .btn-sf { background: #007cc0; }
+
+        /* Modal Settings */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); }
+        .modal-content { background: white; margin: 5% auto; padding: 30px; width: 85%; max-width: 1100px; border-radius: 15px; text-align: center; position: relative; }
+        .location-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-top: 25px; }
+        .loc-item { cursor: pointer; transition: 0.3s; text-decoration: none; color: #333; }
+        .loc-item:hover { transform: translateY(-5px); }
+        .loc-item img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border: 2px solid #eee; }
+        .loc-item p { font-weight: bold; margin-top: 10px; font-size: 14px; }
+        .close-btn { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: #666; }
+
+        footer { text-align: center; padding: 30px; background: white; color: #666; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="logo-left"><img src="jpl.png" alt="JPL"></div>
+        <div class="header-center">
+            <h1 class="main-title">SkillPlus+</h1>
+            <span class="sub-brand">Measure. Improve. Succeed</span>
+        </div>
+        <div class="logo-right"><img src="JIPT-LOGO.png" alt="JIPT"></div>
+    </header>
+
+    <div class="hero-banner" id="heroBanner">
+        <h1 id="greeting">Welcome!</h1>
+    </div>
+
+    <div class="section-label">Quick Actions</div>
+
+    <div class="portal-container">
+        <div class="card">
+            <img src="Brief vector background_ Summary.jpg" class="card-img">
+            <h2>Dakshata Assessment</h2>
+            <button class="btn btn-green" onclick="openModal('dakshata')">Launch</button>
+        </div>
+
+        <div class="card">
+            <img src="Download light bulb pencil doodles idea concept for free.jpg" class="card-img">
+            <h2>PRP</h2>
+            <button class="btn btn-orange" onclick="openModal('prp')">Launch</button>
+        </div>
+
+        <div class="card">
+            <img src="download (26).jpg" class="card-img">
+            <h2>Knowledge Portal</h2>
+            <a href="http://jipt.org.in" target="_blank" class="btn btn-blue">Explore</a>
+        </div>
+
+        <div class="card">
+            <img src="https://img.icons8.com/color/144/sap.png" class="card-img" style="height:100px; margin: 15px 0;">
+            <h2>Successfactor</h2>
+            <a href="https://hcm44.sapsf.com/sf/home?bplte_company=jindalstee" target="_blank" class="btn btn-sf">Open</a>
+        </div>
+    </div>
+
+    <div id="locationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" style="color: var(--jipt-blue);">Select Unit</h2>
+            <div class="location-grid">
+                <a href="#" id="link-tamnar" class="loc-item" target="_blank"><img src="Tamnar.jpg"><p>Tamnar</p></a>
+                <a href="#" id="link-dcpp" class="loc-item" target="_blank"><img src="DCPP.jpg"><p>DCPP</p></a>
+                <a href="#" id="link-angul" class="loc-item" target="_blank"><img src="Angul.jpg"><p>Angul</p></a>
+                <a href="#" id="link-shirpur" class="loc-item" target="_blank"><img src="shirpur.jpg"><p>Shirpur</p></a>
+                <a href="#" id="link-simhapuri" class="loc-item" target="_blank"><img src="simhapuri.jpg"><p>Simhapuri</p></a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Jindal Institute of Power Technology (JIPT).<br>
+        <strong>Created by Suwashini Kumari</strong>
+    </footer>
+
+    <script>
+        function updatePortal() {
+            const now = new Date();
+            const hours = now.getHours();
+            const greeting = document.getElementById('greeting');
+            const banner = document.getElementById('heroBanner');
+            
+            const overlayMorning = "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), ";
+            const overlayNight = "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), "; 
+
+            if (hours >= 5 && hours < 12) {
+                greeting.innerText = "Good morning!";
+                banner.style.backgroundImage = overlayMorning + "url('morning.jpg.jpg')";
+            } 
+            else if (hours >= 12 && hours < 17) {
+                greeting.innerText = "Good afternoon!";
+                banner.style.backgroundImage = overlayMorning + "url('afternoon.jpg.jpg')";
+            } 
+            else if (hours >= 17 && hours <= 23) {
+                greeting.innerText = "Good evening!";
+                banner.style.backgroundImage = overlayNight + "url('evening.jpg.jpg')";
+            } 
+            else {
+                greeting.innerText = "Working late? Good Night!";
+                banner.style.backgroundImage = overlayNight + "url('midnight.jpg.jpg')"; 
+            }
+        }
+
+        const modal = document.getElementById("locationModal");
+        function openModal(type) {
+            modal.style.display = "block";
+            document.getElementById('modalTitle').innerText = (type === 'dakshata' ? "Dakshata Assessment - Select Unit" : "PRP - Select Unit");
+            
+            const tLink = "https://script.google.com/a/macros/jindalpower.com/s/AKfycbxVSC505OL5P6VzSwfRKRXPatqeZFzs4OZBwPwyvo8t29nye_JJU-PZBYIUpWzN1jE/exec";
+            const dLink = "https://script.google.com/a/macros/jindalpower.com/s/AKfycbzovzEym55lc70LDNaNKBIHtGLqU2X32W19hBxZdRPM3oYalUNK-yzEIB-fF5c70EzY/exec";
+            const aLink = "https://script.google.com/a/macros/jindalpower.com/s/AKfycbxt2oEvFhJ5DlW7ULnNsCU1TxSs-QN9ch7oddYFbvZSXEYcZtDuxiYM84PuGilA7j1t/exec";
+
+            document.getElementById('link-tamnar').href = tLink;
+            document.getElementById('link-dcpp').href = dLink;
+            document.getElementById('link-angul').href = aLink;
+        }
+
+        function closeModal() { modal.style.display = "none"; }
+        window.onclick = function(event) { if (event.target == modal) closeModal(); }
+        
+        updatePortal();
+        setInterval(updatePortal, 60000); 
+    </script>
+</body>
+</html>
